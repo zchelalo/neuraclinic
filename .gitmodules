@@ -1,0 +1,12 @@
+[submodule "neuraclinic-auth"]
+	path = neuraclinic-auth
+	url = git@github.com:zchelalo/neuraclinic-auth.git
+[submodule "neuraclinic-users"]
+	path = neuraclinic-users
+	url = git@github.com:zchelalo/neuraclinic-users.git
+[submodule "neuraclinic-proto-contracts"]
+	path = neuraclinic-proto-contracts
+	url = git@github.com:zchelalo/neuraclinic-proto-contracts.git
+[submodule "neuraclinic-jenkins"]
+	path = neuraclinic-jenkins
+	url = git@github.com:zchelalo/neuraclinic-jenkins.git

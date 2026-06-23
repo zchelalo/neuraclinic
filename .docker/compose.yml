@@ -1,0 +1,31 @@
+name: neuraclinic-shared
+
+services:
+  neuraclinic-rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: neuraclinic-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+      RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE:-neuraclinic-local-cookie}
+    ports:
+      - ${RABBITMQ_PORT:-5672}:5672
+      - ${RABBITMQ_MANAGEMENT_PORT:-15672}:15672
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - neuraclinic-rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - neuraclinic-network
+
+networks:
+  neuraclinic-network:
+    external: true
+
+volumes:
+  neuraclinic-rabbitmq-data:
+    name: neuraclinic-rabbitmq-data
