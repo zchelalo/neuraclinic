@@ -10,3 +10,6 @@
 [submodule "neuraclinic-jenkins"]
 	path = neuraclinic-jenkins
 	url = git@github.com:zchelalo/neuraclinic-jenkins.git
+[submodule "neuraclinic-notifications"]
+	path = neuraclinic-notifications
+	url = git@github.com:zchelalo/neuraclinic-notifications.git

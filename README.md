@@ -5,6 +5,7 @@
 ## Structure
 
 - `neuraclinic-auth`: Go authentication microservice
+- `neuraclinic-notifications`: Go email notifications worker
 - `neuraclinic-users`: users microservice
 - `neuraclinic-proto-contracts`: shared `.proto` contracts
 - `neuraclinic-jenkins`: CI/CD support and Jenkins configuration
@@ -49,4 +50,5 @@ The shared Docker hostname is `neuraclinic-rabbitmq`.
 
 - Each microservice keeps its own `docker compose`, `Makefile`, and development workflow.
 - This root repository only centralizes submodules and cross-cutting shared services.
+- `neuraclinic-notifications` consumes RabbitMQ events and should be converted to a git submodule once its remote repository exists.
 - `infra` is not included in this layer yet.
