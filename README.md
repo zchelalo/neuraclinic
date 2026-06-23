@@ -2,51 +2,51 @@
 
 `git clone --recurse-submodules git@github.com:zchelalo/neuraclinic.git`
 
-## Estructura
+## Structure
 
-- `neuraclinic-auth`: microservicio de autenticacion en Go
-- `neuraclinic-users`: microservicio de usuarios
-- `neuraclinic-proto-contracts`: contratos `.proto` compartidos
-- `neuraclinic-jenkins`: configuracion y soporte para CI/CD
-- `.docker/compose.yml`: servicios compartidos de desarrollo local
+- `neuraclinic-auth`: Go authentication microservice
+- `neuraclinic-users`: users microservice
+- `neuraclinic-proto-contracts`: shared `.proto` contracts
+- `neuraclinic-jenkins`: CI/CD support and Jenkins configuration
+- `.docker/compose.yml`: shared local development services
 
-## Submodulos
+## Submodules
 
-Si el repositorio se clona sin `--recurse-submodules`:
+If the repository is cloned without `--recurse-submodules`:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-## Servicios compartidos
+## Shared Services
 
-Actualmente esta capa levanta servicios generales reutilizables por varios microservicios. Por ahora incluye:
+This root layer provides shared services that can be reused by multiple microservices. At the moment it includes:
 
 - `RabbitMQ`
 
-### Levantar RabbitMQ local
+### Start RabbitMQ Locally
 
-Desde esta carpeta:
+From this directory:
 
 ```bash
 make compose-detached
 ```
 
-RabbitMQ quedara disponible en:
+RabbitMQ will be available at:
 
 - AMQP: `localhost:5672`
 - Management UI: `http://localhost:15672`
 
-Credenciales por defecto:
+Default credentials:
 
-- usuario: `guest`
+- username: `guest`
 - password: `guest`
 
-Los microservicios que necesiten publicar o consumir eventos deben conectarse a la red Docker `neuraclinic-network`.
-El hostname compartido dentro de Docker es `neuraclinic-rabbitmq`.
+Microservices that need to publish or consume events should connect to the Docker network `neuraclinic-network`.
+The shared Docker hostname is `neuraclinic-rabbitmq`.
 
-## Notas
+## Notes
 
-- Cada microservicio conserva su propio `docker compose`, `Makefile` y flujo de desarrollo.
-- Esta raiz solo centraliza submodulos y servicios transversales del ecosistema.
-- Todavia no se incluye `infra` en esta capa.
+- Each microservice keeps its own `docker compose`, `Makefile`, and development workflow.
+- This root repository only centralizes submodules and cross-cutting shared services.
+- `infra` is not included in this layer yet.
