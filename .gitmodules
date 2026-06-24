@@ -13,3 +13,9 @@
 [submodule "neuraclinic-notifications"]
 	path = neuraclinic-notifications
 	url = git@github.com:zchelalo/neuraclinic-notifications.git
+[submodule "neuraclinic-records"]
+	path = neuraclinic-records
+	url = git@github.com:zchelalo/neuraclinic-records.git
+[submodule "neuraclinic-file-management"]
+	path = neuraclinic-file-management
+	url = git@github.com:zchelalo/neuraclinic-file-management.git

@@ -5,6 +5,8 @@
 ## Structure
 
 - `neuraclinic-auth`: Go authentication microservice
+- `neuraclinic-records`: Go clinical records microservice
+- `neuraclinic-file-management`: Go file metadata and pre-signed URL microservice
 - `neuraclinic-notifications`: Go email notifications worker
 - `neuraclinic-users`: users microservice
 - `neuraclinic-proto-contracts`: shared `.proto` contracts
@@ -50,5 +52,7 @@ The shared Docker hostname is `neuraclinic-rabbitmq`.
 
 - Each microservice keeps its own `docker compose`, `Makefile`, and development workflow.
 - This root repository only centralizes submodules and cross-cutting shared services.
+- `neuraclinic-records` implements patients, appointments, notes, familiograms, and attachment metadata. Attachment uploads depend on an external `FileManagementService`.
+- `neuraclinic-file-management` stores file metadata in PostgreSQL, signs S3-compatible upload/download URLs, uses MinIO locally, and includes Terraform for the AWS S3 bucket.
 - `neuraclinic-notifications` consumes RabbitMQ events and should be converted to a git submodule once its remote repository exists.
 - `infra` is not included in this layer yet.
