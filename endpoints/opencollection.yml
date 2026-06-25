@@ -10,8 +10,6 @@ config:
       - type: file
         path: ../neuraclinic-proto-contracts/proto/user/v1/user.proto
       - type: file
-        path: ../neuraclinic-proto-contracts/proto/record/v1/patient.proto
-      - type: file
         path: ../neuraclinic-proto-contracts/proto/location/v1/location.proto
       - type: file
         path: ../neuraclinic-proto-contracts/proto/record/v1/note.proto
@@ -21,8 +19,12 @@ config:
         path: ../neuraclinic-proto-contracts/proto/file_management/v1/file_management.proto
       - type: file
         path: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/attachment.proto
+      - type: file
+        path: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/patient.proto
+      - type: file
+        path: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/familiogram.proto
     importPaths:
-      - path: ../neuraclinic-proto-contracts/proto
+      - path: C:/Users/admin/Documents/neuraclinic-api-client-protos
   proxy:
     inherit: true
     config:
@@ -33,6 +35,11 @@ config:
         username: ""
         password: ""
       bypassProxy: ""
+
+request:
+  variables:
+    - name: familiogramId
+      value: 019efceb-1413-7806-8757-9f8f7c71feed
 bundled: false
 extensions:
   bruno:

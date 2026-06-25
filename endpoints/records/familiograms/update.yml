@@ -1,0 +1,62 @@
+info:
+  name: update
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.FamiliogramService/Update
+  methodType: unary
+  protoFilePath: ../../../neuraclinic-proto-contracts/proto/record/v1/familiogram.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "{{familiogramId}}",
+      "data": {
+        "fields": {
+          "objeto_1": {
+            "structValue": {
+              "fields": {
+                "x": {
+                  "numberValue": 500
+                },
+                "y": {
+                  "numberValue": 1200
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.familiogram?.id) {
+          bru.setVar("familiogramId", res.body.familiogram.id);
+        }
+        if (res.body?.familiogram?.patient_id) {
+          bru.setVar("familiogramPatientId", res.body.familiogram.patient_id);
+        }
+
+docs: |-
+  Actualiza `data` del familiograma.
+
+  Flujo correcto:
+  1. Ejecuta `familiograms/find-by-patient-id`
+  2. Bruno guarda `{{familiogramId}}`
+  3. Ejecuta `familiograms/update`
+
+  Importante:
+  - el campo `id` es el `id` del familiograma, no el `patient_id`
+  - en Bruno, `google.protobuf.Struct` debe enviarse con `fields`/`structValue`
+  - `data` reemplaza el JSON completo persistido actualmente

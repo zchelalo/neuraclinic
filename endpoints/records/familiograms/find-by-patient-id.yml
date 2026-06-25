@@ -1,0 +1,39 @@
+info:
+  name: find-by-patient-id
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.FamiliogramService/FindByPatientId
+  methodType: unary
+  protoFilePath: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/familiogram.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "patient_id": "019efceb-1413-7803-9175-3434ce9fcc16"
+    }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.familiogram?.id) {
+          bru.setVar("familiogramId", res.body.familiogram.id);
+        }
+        if (res.body?.familiogram?.patient_id) {
+          bru.setVar("familiogramPatientId", res.body.familiogram.patient_id);
+        }
+
+docs: |-
+  Busca el familiograma por `patient_id`.
+
+  Este request guarda `{{familiogramId}}` para que `familiograms/update`
+  use el `id` correcto del familiograma. El update no usa `patient_id`.
