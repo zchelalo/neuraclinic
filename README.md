@@ -73,4 +73,4 @@ make import-location-data SOURCE_VERSION=2026-06-22 INEGI_SOURCE_VERSION=2026-06
 
 Source-specific targets are also available: `make import-sepomex` and `make import-inegi-ageeml`. The larger INEGI locality file (`may_acento.zip`) is downloaded now for the next locality-level importer, but it is not loaded by the current target.
 
-For API consumers, administrative-area filters use the `AdminAreaType` proto enum (`STATE`, `MUNICIPALITY`). Settlement types remain text because they are imported source values from SEPOMEX rather than a closed Neuraclinic taxonomy.
+For API consumers, administrative-area filters use only the `AdminAreaType` proto enum (`STATE`, `MUNICIPALITY`). Settlement types remain text because they are imported source values from SEPOMEX rather than a closed Neuraclinic taxonomy.
