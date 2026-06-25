@@ -19,3 +19,6 @@
 [submodule "neuraclinic-file-management"]
 	path = neuraclinic-file-management
 	url = git@github.com:zchelalo/neuraclinic-file-management.git
+[submodule "neuraclinic-location"]
+	path = neuraclinic-location
+	url = git@github.com:zchelalo/neuraclinic-location.git
