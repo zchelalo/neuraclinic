@@ -1,0 +1,26 @@
+info:
+  name: list
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.AttachmentService/List
+  methodType: unary
+  protoFilePath: ../../../neuraclinic-proto-contracts/proto/record/v1/attachment.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "pagination": {
+        "limit": 10
+      },
+      "patient_id": "019efceb-1413-7803-9175-3434ce9fcc16",
+      "note_id": "019eff8c-f9ac-75ec-97a0-0a9d2aeffec6"
+    }
+  auth: inherit

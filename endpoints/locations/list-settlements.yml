@@ -1,0 +1,17 @@
+info:
+  name: list-settlements
+  type: grpc
+  seq: 4
+
+grpc:
+  url: "{{http}}://{{host}}:{{locationPort}}"
+  method: /location.v1.LocationService/ListSettlements
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/location/v1/location.proto
+  message: |-
+    {
+      "country_code": "MX",
+      "admin_area_code": 26,
+      "limit": 50
+    }
+  auth: inherit

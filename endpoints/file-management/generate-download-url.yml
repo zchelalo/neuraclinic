@@ -1,0 +1,43 @@
+info:
+  name: generate-download-url
+  type: grpc
+  seq: 3
+
+grpc:
+  url: "{{http}}://{{host}}:{{fileManagementPort}}"
+  method: /file_management.v1.FileManagementService/GenerateDownloadUrl
+  methodType: unary
+  protoFilePath: ../../neuraclinic-proto-contracts/proto/file_management/v1/file_management.proto
+  metadata:
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+      "id": "{{attachmentFileId}}"
+    }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.download_url) {
+          bru.setVar("fileManagementDownloadUrl", res.body.download_url);
+        }
+        if (res.body?.expires_at) {
+          bru.setVar("fileManagementDownloadExpiresAt", res.body.expires_at);
+        }
+
+docs: |-
+  Endpoint técnico del microservicio `file-management`.
+
+  Genera una URL presigned temporal de descarga para un `file_id` que ya esté
+  en `FILE_STATUS_AVAILABLE`.
+
+  Para attachments normalmente no hace falta llamarlo directo porque `records/list`
+  y `records/find-by-id` lo invocan internamente cuando el archivo ya está disponible
+  y el MIME es viewable.
+
+  Variables que guarda:
+  - `{{fileManagementDownloadUrl}}`
+  - `{{fileManagementDownloadExpiresAt}}`

@@ -1,0 +1,41 @@
+opencollection: 1.0.0
+
+info:
+  name: neuraclinic
+config:
+  protobuf:
+    protoFiles:
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/auth/v1/auth.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/user/v1/user.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/record/v1/patient.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/location/v1/location.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/record/v1/note.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/record/v1/appointment.proto
+      - type: file
+        path: ../neuraclinic-proto-contracts/proto/file_management/v1/file_management.proto
+      - type: file
+        path: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/attachment.proto
+    importPaths:
+      - path: ../neuraclinic-proto-contracts/proto
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

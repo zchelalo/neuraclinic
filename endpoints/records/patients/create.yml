@@ -1,0 +1,47 @@
+info:
+  name: create
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.PatientService/Create
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/patient.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "first_name": "Eduardo",
+      "middle_name": "Antonio",
+      "first_last_name": "Saavedra",
+      "second_last_name": "Quijada",
+      "birth_date": {
+        "year": 2003,
+        "month": 8,
+        "day": 12
+      },
+      "birth_country": "México",
+      "birth_province": "Sonora",
+      "birth_city": "Nogales",
+      "sex": "SEX_MALE",
+      "marital_status": "MARITAL_STATUS_MARRIED",
+      "occupation": "Ingeniero en Desarrollo de Software",
+      "religion": "Catolico",
+      "phone": "6311016101",
+      "email": "eduardosaavedra687@gmail.com",
+      "country": "México",
+      "province": "Michoacan",
+      "city": "Morelia",
+      "postal_code": "58195",
+      "neighborhood": "Campestre del Vergel",
+      "street": "Calle de los Tomates",
+      "street_number": "657",
+      "unit_number": "1"
+    }
+  auth: inherit

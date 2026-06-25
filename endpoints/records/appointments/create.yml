@@ -1,0 +1,31 @@
+info:
+  name: create
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.AppointmentService/Create
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/appointment.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "start_time": {
+        "seconds": "1782383400",
+        "nanos": 0
+      },
+      "end_time": {
+        "seconds": "1782387000",
+        "nanos": 0
+      },
+      "reason": "Diagnosticar",
+      "patient_id": "019efceb-1413-7803-9175-3434ce9fcc16"
+    }
+  auth: inherit

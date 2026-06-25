@@ -1,0 +1,38 @@
+info:
+  name: update-identification-data
+  type: grpc
+  seq: 4
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.PatientService/UpdateIdentificationData
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/patient.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "019ef70d-e2c9-778f-9696-d1145e671338",
+      "first_name": "Eduardo",
+      "middle_name": "Antonio",
+      "first_last_name": "Saavedra",
+      "second_last_name": "Quijada",
+      "birth_date": {
+        "year": 2003,
+        "month": 8,
+        "day": 12
+      },
+      "birth_country": "México",
+      "birth_province": "Sonora",
+      "birth_city": "Nogales",
+      "sex": 1,
+      "marital_status": 2,
+      "occupation": "Ingeniero en Desarrollo de Software",
+      "religion": "Catolico"
+    }
+  auth: inherit

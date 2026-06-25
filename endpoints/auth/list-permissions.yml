@@ -1,0 +1,20 @@
+info:
+  name: list-permissions
+  type: grpc
+  seq: 8
+
+grpc:
+  url: "{{http}}://{{host}}:{{authPort}}"
+  method: /auth.v1.AuthService/ListPermissions
+  methodType: unary
+  protoFilePath: ../../neuraclinic-postman-protos/auth/v1/auth.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+      disabled: true
+  message: "{}"
+  auth: inherit

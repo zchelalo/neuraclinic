@@ -1,0 +1,30 @@
+info:
+  name: update-address
+  type: grpc
+  seq: 6
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.PatientService/UpdateAddress
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/patient.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "019ef70d-e2c9-778f-9696-d1145e671338",
+      "country": "México",
+      "province": "Michoacan",
+      "city": "Morelia",
+      "postal_code": "58195",
+      "neighborhood": "Campestre del Vergel",
+      "street": "Calle de los Tomates",
+      "street_number": "657",
+      "unit_number": "2"
+    }
+  auth: inherit

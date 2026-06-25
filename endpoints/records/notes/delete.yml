@@ -1,0 +1,22 @@
+info:
+  name: delete
+  type: grpc
+  seq: 5
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.NoteService/Delete
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/note.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "019eff91-21ec-7827-a971-3e0bef9af476"
+    }
+  auth: inherit

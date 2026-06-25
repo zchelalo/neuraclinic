@@ -1,0 +1,22 @@
+info:
+  name: delete
+  type: grpc
+  seq: 7
+
+grpc:
+  url: "{{http}}://{{host}}:{{userPort}}"
+  method: /user.v1.UserService/Delete
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/user/v1/user.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+  message: |-
+    {
+      "id": "019ee0c0-d59e-77bb-b1e2-fadd6d3a6701"
+    }
+  auth: inherit

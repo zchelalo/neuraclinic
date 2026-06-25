@@ -1,0 +1,15 @@
+info:
+  name: list-countries
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{locationPort}}"
+  method: /location.v1.LocationService/ListCountries
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/location/v1/location.proto
+  message: |-
+    {
+      "limit": 5
+    }
+  auth: inherit

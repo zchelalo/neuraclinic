@@ -1,0 +1,26 @@
+info:
+  name: update
+  type: grpc
+  seq: 4
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.NoteService/Update
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/note.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "019eff8c-f9ac-75ec-97a0-0a9d2aeffec6",
+      "appointment_id": "019eff79-926a-74b5-a1b8-de6d2f5e76ee",
+      "title": "Diagnostico paciente",
+      "content_html": "<h1>Diagnostico paciente</h1>",
+      "content_text": "Diagnostico paciente"
+    }
+  auth: inherit

@@ -1,0 +1,24 @@
+info:
+  name: verify-reset-code
+  type: grpc
+  seq: 5
+
+grpc:
+  url: "{{http}}://{{host}}:{{authPort}}"
+  method: /auth.v1.AuthService/VerifyResetCode
+  methodType: unary
+  protoFilePath: ../../neuraclinic-postman-protos/auth/v1/auth.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+      disabled: true
+  message: |-
+    {
+      "email": "test@email.com",
+      "otp": "579732"
+    }
+  auth: inherit

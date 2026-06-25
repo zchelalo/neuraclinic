@@ -1,0 +1,31 @@
+info:
+  name: confirm-upload
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{fileManagementPort}}"
+  method: /file_management.v1.FileManagementService/ConfirmUpload
+  methodType: unary
+  protoFilePath: ../../neuraclinic-proto-contracts/proto/file_management/v1/file_management.proto
+  metadata:
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+      "id": "{{attachmentFileId}}",
+      "status": "FILE_STATUS_AVAILABLE"
+    }
+  auth: inherit
+
+docs: |-
+  Endpoint técnico del microservicio `file-management`.
+
+  Para attachments el flujo es:
+  1. `records/attachments/create`
+  2. `records/attachments/upload-file`
+  3. `file-management/confirm-upload`
+  4. `records/attachments/list` o `find-by-id`
+
+  `file-management` confirma el archivo y publica un evento para que `records`
+  sincronice `upload_status` por RabbitMQ.

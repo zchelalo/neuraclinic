@@ -1,0 +1,52 @@
+info:
+  name: request-upload
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{fileManagementPort}}"
+  method: /file_management.v1.FileManagementService/RequestUpload
+  methodType: unary
+  protoFilePath: ../../neuraclinic-proto-contracts/proto/file_management/v1/file_management.proto
+  metadata:
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+      "original_name": "architecture.png",
+      "mime_type": "image/png",
+      "size_bytes": "1909640",
+      "is_public": false,
+      "service_origin": "record"
+    }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.id) {
+          bru.setVar("fileManagementFileId", res.body.id);
+        }
+        if (res.body?.upload_url) {
+          bru.setVar("fileManagementUploadUrl", res.body.upload_url);
+        }
+        if (res.body?.expires_at) {
+          bru.setVar("fileManagementUploadExpiresAt", res.body.expires_at);
+        }
+
+docs: |-
+  Endpoint técnico del microservicio `file-management`.
+
+  Sirve para pedir una URL presigned de subida y crear el metadata inicial del archivo
+  en `FILE_STATUS_UPLOADING`.
+
+  Uso típico:
+  1. Ejecuta `file-management/request-upload`
+  2. Sube el binario al `upload_url` devuelto
+  3. Ejecuta `file-management/confirm-upload`
+
+  Variables que guarda:
+  - `{{fileManagementFileId}}`
+  - `{{fileManagementUploadUrl}}`
+  - `{{fileManagementUploadExpiresAt}}`

@@ -1,0 +1,24 @@
+info:
+  name: sign-out
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{authPort}}"
+  method: /auth.v1.AuthService/SignOut
+  methodType: unary
+  protoFilePath: ../../neuraclinic-postman-protos/auth/v1/auth.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+      disabled: true
+  message: |-
+    {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiIwMTllZjAzZi1lZGVhLTdlZmYtYTA3MS1mOTg4OGE4NjQzZDgiLCJpc3MiOiJuZXVyYWNsaW5pYy1hdXRoIiwic3ViIjoiMDE5ZWUwYmYtZjU5OS03YTU0LTlmMDctOTY3ZTg0ZWYyMTM2IiwiZXhwIjoxNzgyMTQ4MDgyLCJpYXQiOjE3ODIxNDcxODJ9.dyTKRdTQYKM7ZVG2wyDhU8PCdYlBTYHJVTxsVqkDYTcvR2pQ1V_y7fQ_4CmWmHxIz7LJqIQkhNNDFdEMg0SadH00W9AD53xXaVl-hZdcmQ7-pDafyEzZRlzOe1JRVLrU47kTyDkDF2pVt5503MwA0jJ5f06sXbnlQFKPF7c-26L9D3lHSAnYfk9wKZfIHlG9bmwMMW9xWXfLbQZeff2A4wXi6BUrSCLgY8iooRWyF4AZu3R9Kp6TWFykm5YGZRz5qiuGBtZaUqstJB6BAQV0sl6OHABGOdOU8yMS82_oMfSHSU0zh_tvsYfYMm6QGiWyboT7jVsABPmoj5HtId7dMw",
+      "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiIwMTllZjAzZi1lZGVhLTdlZmYtYTA3MS1mOTg4OGE4NjQzZDgiLCJpc3MiOiJuZXVyYWNsaW5pYy1hdXRoIiwic3ViIjoiMDE5ZWUwYmYtZjU5OS03YTU0LTlmMDctOTY3ZTg0ZWYyMTM2IiwiZXhwIjoxNzg0NzM5MTgyLCJpYXQiOjE3ODIxNDcxODIsImp0aSI6IjAxOWVmMDNmLWVkZWEtN2YwMy04MWZjLThhYTRjZGQ2N2NhNSJ9.ocLktc_uEsNdMOfKHHtyUr3xPsw0x0rU4NnECm6b9BHKPGJU1RYFyQxH955gRtzNRuffcownMIoeatKvrg_AqxNbpSvjRVv-wdElYBzNBHMQ_5qkcuF6X6rR_0OBMatFpuUeER_dGvbTAwOinaYcjbAYyYHj_5JyESh8KBjg9yQR5pcfqcxKyyUoqUsZKF9BAn0naxASkxjKawahc2Z8WijpROcBOEDyvoaJGjV_R5zNLcRTGjbQw3ajAdmH5TUDQVmYvpOTS2kO9rbGk38udeud1ijW-18sHAxJoutJv4qxQDOxcukc1qOdVlqUa7lepRhMkksUqT_e6muB88-O0g"
+    }
+  auth: inherit

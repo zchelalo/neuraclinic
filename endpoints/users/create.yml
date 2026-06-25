@@ -1,0 +1,28 @@
+info:
+  name: create
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{userPort}}"
+  method: /user.v1.UserService/Create
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/user/v1/user.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+        "email": "test4@email.com",
+        "password": "Test1324*",
+        "role_key": "ROLE_KEY_PSYCHOLOGIST",
+        "psychologist": {
+            "first_name": "Primero",
+            "middle_name": "Segundo",
+            "first_last_name": "Tercero",
+            "second_last_name": "Cuarto"
+        }
+    }
+  auth: inherit

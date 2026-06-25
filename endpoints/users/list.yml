@@ -1,0 +1,22 @@
+info:
+  name: list
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{userPort}}"
+  method: /user.v1.UserService/List
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/user/v1/user.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+      "pagination": {
+        "limit": 2
+      }
+    }
+  auth: inherit

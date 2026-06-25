@@ -1,0 +1,40 @@
+info:
+  name: create
+  type: grpc
+  seq: 1
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.AttachmentService/Create
+  methodType: unary
+  protoFilePath: ../../../neuraclinic-proto-contracts/proto/record/v1/attachment.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "patient_id": "019efceb-1413-7803-9175-3434ce9fcc16",
+      "note_id": "019eff8c-f9ac-75ec-97a0-0a9d2aeffec6",
+      "original_name": "architecture.png",
+      "mime_type": "image/png",
+      "size_bytes": "1909640"
+    }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.upload_url) {
+          bru.setVar("attachmentUploadUrl", res.body.upload_url);
+        }
+        if (res.body?.id) {
+          bru.setVar("attachmentId", res.body.id);
+        }
+        if (res.body?.file_id) {
+          bru.setVar("attachmentFileId", res.body.file_id);
+        }

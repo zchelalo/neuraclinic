@@ -1,0 +1,20 @@
+info:
+  name: find-by-id
+  type: grpc
+  seq: 3
+
+grpc:
+  url: "{{http}}://{{host}}:{{userPort}}"
+  method: /user.v1.UserService/FindById
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/user/v1/user.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+  message: |-
+    {
+      "id": "019ee0fd-70cf-7339-86a5-2c01489c92c9"
+    }
+  auth: inherit

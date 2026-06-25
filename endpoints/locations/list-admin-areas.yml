@@ -1,0 +1,17 @@
+info:
+  name: list-admin-areas
+  type: grpc
+  seq: 2
+
+grpc:
+  url: "{{http}}://{{host}}:{{locationPort}}"
+  method: /location.v1.LocationService/ListAdminAreas
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/location/v1/location.proto
+  message: |-
+    {
+      "country_code": "MX",
+      "admin_area_type": "ADMIN_AREA_TYPE_STATE",
+      "limit": 50
+    }
+  auth: inherit

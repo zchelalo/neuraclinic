@@ -1,0 +1,41 @@
+info:
+  name: upload-file
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{attachmentUploadUrl}}"
+  headers:
+    - name: Content-Type
+      value: "{{attachmentMimeType}}"
+  body:
+    type: file
+    data:
+      - filePath: \\wsl.localhost\Ubuntu\home\chelalo\projects\personal\neuraclinic\neuraclinic\architecture.png
+        contentType: image/png
+        selected: true
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Usa este request para subir el binario al `upload_url` presigned que devuelve `create`.
+
+  Flujo:
+  1. Ejecuta `attachments/create`.
+  2. El script guarda `id` en `{{attachmentId}}`, `upload_url` en `{{attachmentUploadUrl}}` y `file_id` en `{{attachmentFileId}}`.
+  3. Actualiza `{{attachmentMimeType}}` para que coincida exactamente con el `mime_type` enviado en `create`.
+  4. Abre este request.
+  5. En Bruno, ve a `Body` -> `Other` -> `File / Binary`.
+  6. Selecciona el archivo real que quieres subir.
+  7. Mantén `Content-Type` exactamente igual al `mime_type` usado en `create`.
+  8. Después ejecuta `file-management/confirm-upload`.
+
+  Notas:
+  - Este request no usa auth de Bruno; la autorización ya va firmada en el query string del presigned URL.
+  - Si cambias el tipo MIME aquí y no coincide con el usado al crear el attachment, el storage puede rechazar la subida.
+  - El archivo que subas debe coincidir con `size_bytes` reportado en `create`.

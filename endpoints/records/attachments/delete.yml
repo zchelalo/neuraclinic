@@ -1,0 +1,22 @@
+info:
+  name: delete
+  type: grpc
+  seq: 5
+
+grpc:
+  url: "{{http}}://{{host}}:{{recordPort}}"
+  method: /record.v1.AttachmentService/Delete
+  methodType: unary
+  protoFilePath: ../../../neuraclinic-proto-contracts/proto/record/v1/attachment.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-psychologist-id
+      value: 019ee0fd-70ce-7612-97ae-eb1f93030af0
+  message: |-
+    {
+      "id": "{{attachmentId}}"
+    }
+  auth: inherit

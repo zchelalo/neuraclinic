@@ -1,0 +1,23 @@
+info:
+  name: refresh-token
+  type: grpc
+  seq: 3
+
+grpc:
+  url: "{{http}}://{{host}}:{{authPort}}"
+  method: /auth.v1.AuthService/RefreshToken
+  methodType: unary
+  protoFilePath: ../../neuraclinic-postman-protos/auth/v1/auth.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+      disabled: true
+  message: |-
+    {
+      "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiIwMTllZjUwNi03MDU5LTdmMDAtODJjOC02ZTA3NDM0NDE5NzEiLCJpc3MiOiJuZXVyYWNsaW5pYy1hdXRoIiwic3ViIjoiMDE5ZWUwYmYtZjU5OS03YTU0LTlmMDctOTY3ZTg0ZWYyMTM2IiwiZXhwIjoxNzg0ODE5MzAwLCJpYXQiOjE3ODIyMjczMDAsImp0aSI6IjAxOWVmNTA2LTcwNTktN2YwMi05YzFiLTBhZTQ4Nzc0M2M0ZCJ9.HEo-rC01uV4Gl42c2FZa1_ne3SfVed6HEesOR6wWcfAMxFrQtlVqdvs2Y0zGcrNfuhF8OM6QXlpkd7vztZEPQ8zdk5XDc-8MDB69IT6FZHEV156TaZX6ABCFwPVtShkcKLGubES_LZC8I0Q2-ZZhKuHbbhyO9Y4nDWTThcalUxkqrWndl3KZBR_LSC6ZWHqKoNiPTK7qBU_UM2n2rZNbYySqgmb0tQlI8XZLnLz2xOxo96hapi5WmImtn4h0VdI777MpC2vg7j0eE-gZKqFl_0i46yWGs633YFOtssWaGmbgIYM_z-tVCLAM0756iPJWBlWrrYNBkkI4Kdd0oPLbfQ"
+    }
+  auth: inherit

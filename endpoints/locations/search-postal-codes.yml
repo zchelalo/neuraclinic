@@ -1,0 +1,17 @@
+info:
+  name: search-postal-codes
+  type: grpc
+  seq: 5
+
+grpc:
+  url: "{{http}}://{{host}}:{{locationPort}}"
+  method: /location.v1.LocationService/SearchPostalCodes
+  methodType: unary
+  protoFilePath: ../../neuraclinic-api-client-protos/location/v1/location.proto
+  message: |-
+    {
+      "country_code": "MX",
+      "postal_code": "84090",
+      "limit": 50
+    }
+  auth: inherit

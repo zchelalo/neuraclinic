@@ -1,0 +1,26 @@
+info:
+  name: check-permissions
+  type: grpc
+  seq: 7
+
+grpc:
+  url: "{{http}}://{{host}}:{{authPort}}"
+  method: /auth.v1.AuthService/CheckPermissions
+  methodType: unary
+  protoFilePath: ../../neuraclinic-postman-protos/auth/v1/auth.proto
+  metadata:
+    - name: accept-language
+      value: "{{language}}"
+    - name: x-user-id
+      value: "{{userId}}"
+    - name: x-internal-service-token
+      value: "{{internalServiceToken}}"
+      disabled: true
+  message: |-
+    {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaWQiOiIwMTllZjUxNi00NmZlLTc0MDctOGEwNy00MjQwYzliODU4YzgiLCJpc3MiOiJuZXVyYWNsaW5pYy1hdXRoIiwic3ViIjoiMDE5ZWUwYmYtZjU5OS03YTU0LTlmMDctOTY3ZTg0ZWYyMTM2IiwiZXhwIjoxNzgyMjI5MjM4LCJpYXQiOjE3ODIyMjgzMzh9.ApbSdsq0QfQ_EZFGSmIMgnPjpW561CrXgIs7FJkeNii-cPkpr3t-DgJFriLymAOd2hYu7HGiZdU-AiowYPzy6CM7uzycvCZRQ9a00Wh2HchIvhTJGpCAfsApVEapaM0vW4uQ5o9swKBRUhYmzwuZFpNOEmgZhb_sOdzu-S6UFe0G904Vxb6B980UkPTug5NKTzgGZyA6wvkeKNYXD711thV00GCK0k1Zkih2k0BBFuWzcBfaIE7_lDvhsuNDroA2fU9bvIsQSpEucKiHsA_na5X6yVYHdk9eOUtUNzTRkwmnL7Ga75TEOPDGhXs-FE8V47LT4X-n5ayLiy2tFZ_APg",
+      "required_permissions_keys": [
+        "PERMISSION_KEY_APPOINTMENT_EDIT"
+      ]
+    }
+  auth: inherit
