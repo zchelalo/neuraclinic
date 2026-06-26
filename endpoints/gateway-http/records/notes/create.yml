@@ -1,0 +1,41 @@
+info:
+  name: create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/notes"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "patient_id": "{{gatewayPatientId}}",
+        "appointment_id": "{{gatewayAppointmentId}}",
+        "title": "Diagnostico",
+        "content_html": "<h1>Diagnostico</h1>",
+        "content_text": "Diagnostico"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.id) {
+          bru.setVar("gatewayNoteId", res.body.data.id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

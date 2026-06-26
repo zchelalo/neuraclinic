@@ -7,7 +7,7 @@ grpc:
   url: "{{http}}://{{host}}:{{authPort}}"
   method: /auth.v1.AuthService/SignIn
   methodType: unary
-  protoFilePath: ../../neuraclinic-api-client-protos/auth/v1/auth.proto
+  protoFilePath: ../neuraclinic-proto-contracts/proto/auth/v1/auth.proto
   metadata:
     - name: accept-language
       value: "{{language}}"

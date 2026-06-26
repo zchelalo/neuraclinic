@@ -1,0 +1,21 @@
+info:
+  name: delete
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/attachments/{{attachmentId}}"
+  headers:
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

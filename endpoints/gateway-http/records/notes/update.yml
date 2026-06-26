@@ -1,0 +1,31 @@
+info:
+  name: update
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/notes/{{gatewayNoteId}}"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Diagnostico actualizado",
+        "content_html": "<h1>Diagnostico actualizado</h1>",
+        "content_text": "Diagnostico actualizado"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

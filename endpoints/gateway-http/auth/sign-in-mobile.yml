@@ -1,0 +1,41 @@
+info:
+  name: sign-in-mobile
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/auth/sign-in"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+  body:
+    type: json
+    data: |-
+      {
+        "email": "test@email.com",
+        "password": "Test1324*"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.access_token) {
+          bru.setVar("gatewayAccessToken", res.body.data.access_token);
+        }
+        if (res.body?.data?.refresh_token) {
+          bru.setVar("gatewayRefreshToken", res.body.data.refresh_token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Usa este request como punto de entrada para los endpoints protegidos del gateway.
+  Guarda `{{gatewayAccessToken}}` y `{{gatewayRefreshToken}}` para el flujo mobile bearer.

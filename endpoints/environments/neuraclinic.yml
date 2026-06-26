@@ -2,7 +2,7 @@ name: neuraclinic
 color: "#8D44B2"
 variables:
   - name: http
-    value: https
+    value: http
   - name: host
     value: localhost
   - name: userPort
@@ -21,6 +21,24 @@ variables:
     value: "8005"
   - name: fileManagementPort
     value: "8004"
+  - name: gatewayPort
+    value: "8000"
+  - name: gatewayAccessToken
+    value: ""
+  - name: gatewayRefreshToken
+    value: ""
+  - name: gatewayPatientId
+    value: 019efceb-1413-7803-9175-3434ce9fcc16
+  - name: gatewayAppointmentId
+    value: 019eff79-926a-74b5-a1b8-de6d2f5e76ee
+  - name: gatewayNoteId
+    value: 019eff8c-f9ac-75ec-97a0-0a9d2aeffec6
+  - name: gatewayUserLookupId
+    value: 019ee0fd-70cf-7339-86a5-2c01489c92c9
+  - name: gatewayResetToken
+    value: ""
+  - name: gatewayFamiliogramPatientId
+    value: 019efceb-1413-7803-9175-3434ce9fcc16
   - name: attachmentUploadUrl
     value: http://localhost:9000/neuraclinic-local-files/record/2026/06/25/019f00c8-cc2e-7abd-8cd4-fef6cf6334f0-architecture.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=neuraclinic%2F20260625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260625T215627Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&x-id=PutObject&X-Amz-Signature=b70fb77e0484b76439f7bb345bbceb4d1576edfad86583df9f0f12b694a61d3c
   - name: attachmentMimeType

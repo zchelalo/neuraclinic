@@ -1,0 +1,30 @@
+info:
+  name: update-contact
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/patients/{{gatewayPatientId}}/contact"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "5551112233",
+        "email": "updated.patient@email.com"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

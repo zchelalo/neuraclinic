@@ -1,0 +1,35 @@
+info:
+  name: update-address
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/patients/{{gatewayPatientId}}/address"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "country": "México",
+        "province": "Jalisco",
+        "city": "Guadalajara",
+        "postal_code": "44100",
+        "neighborhood": "Centro",
+        "street": "Juarez",
+        "street_number": "123"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

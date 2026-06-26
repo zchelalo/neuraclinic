@@ -1,0 +1,56 @@
+info:
+  name: create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/patients"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+  body:
+    type: json
+    data: |-
+      {
+        "first_name": "Eduardo",
+        "middle_name": "Antonio",
+        "first_last_name": "Saavedra",
+        "second_last_name": "Quijada",
+        "birth_date": "2003-08-12",
+        "birth_country": "México",
+        "birth_province": "Sonora",
+        "birth_city": "Nogales",
+        "sex": "SEX_MALE",
+        "marital_status": "MARITAL_STATUS_MARRIED",
+        "occupation": "Ingeniero en Desarrollo de Software",
+        "religion": "Catolico",
+        "phone": "6311016101",
+        "email": "eduardosaavedra687@gmail.com",
+        "country": "México",
+        "province": "Michoacan",
+        "city": "Morelia",
+        "postal_code": "58195",
+        "neighborhood": "Campestre del Vergel",
+        "street": "Calle de los Tomates",
+        "street_number": "657",
+        "unit_number": "1"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.id) {
+          bru.setVar("gatewayPatientId", res.body.data.id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

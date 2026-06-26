@@ -1,0 +1,32 @@
+info:
+  name: verify-reset-code
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/auth/verify-reset-code"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "test@email.com",
+        "otp": "586419"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.reset_token) {
+          bru.setVar("gatewayResetToken", res.body.data.reset_token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

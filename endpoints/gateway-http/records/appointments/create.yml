@@ -1,0 +1,40 @@
+info:
+  name: create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/appointments"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "start_time": "2026-06-25T15:30:00Z",
+        "end_time": "2026-06-25T16:30:00Z",
+        "reason": "Diagnosticar",
+        "patient_id": "{{gatewayPatientId}}"
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.id) {
+          bru.setVar("gatewayAppointmentId", res.body.data.id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

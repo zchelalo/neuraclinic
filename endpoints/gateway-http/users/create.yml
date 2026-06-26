@@ -1,0 +1,45 @@
+info:
+  name: create
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/users"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "email": "test5@email.com",
+        "password": "Test1324*",
+        "role_key": "ROLE_KEY_PSYCHOLOGIST",
+        "psychologist": {
+          "first_name": "Primero",
+          "middle_name": "Segundo",
+          "first_last_name": "Tercero",
+          "second_last_name": "Cuarto"
+        }
+      }
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.body?.data?.user?.id) {
+          bru.setVar("gatewayUserLookupId", res.body.data.user.id);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,19 @@
+info:
+  name: delete
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/users/{{gatewayUserLookupId}}"
+  headers:
+    - name: X-Auth-Mode
+      value: mobile
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

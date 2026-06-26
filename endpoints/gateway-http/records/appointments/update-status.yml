@@ -1,0 +1,29 @@
+info:
+  name: update-status
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/appointments/{{gatewayAppointmentId}}/status"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "new_status": "APPOINTMENT_STATUS_COMPLETED"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

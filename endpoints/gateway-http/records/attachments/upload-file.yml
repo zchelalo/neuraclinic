@@ -1,0 +1,23 @@
+info:
+  name: upload-file
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{attachmentUploadUrl}}"
+  headers:
+    - name: Content-Type
+      value: "{{attachmentMimeType}}"
+  body:
+    type: file
+    data:
+      - filePath: \\wsl.localhost\Ubuntu\home\chelalo\projects\personal\neuraclinic\neuraclinic\architecture.png
+        contentType: image/png
+        selected: true
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

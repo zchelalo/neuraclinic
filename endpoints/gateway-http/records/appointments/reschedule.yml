@@ -1,0 +1,31 @@
+info:
+  name: reschedule
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{http}}://{{host}}:{{gatewayPort}}/api/v1/appointments/{{gatewayAppointmentId}}/reschedule"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: X-Auth-Mode
+      value: mobile
+      disabled: true
+    - name: Authorization
+      value: Bearer {{gatewayAccessToken}}
+      disabled: true
+  body:
+    type: json
+    data: |-
+      {
+        "new_start_time": "2026-06-25T17:00:00Z",
+        "new_end_time": "2026-06-25T18:00:00Z",
+        "reason": "Cambio de horario"
+      }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -6,11 +6,13 @@ endif
 DOCKER_COMPOSE_FILE = ./.docker/compose.yml
 DOCKER_NETWORK = neuraclinic-network
 SUBMODULE_COMPOSE_DIRS = \
+	neuraclinic-api-gateway \
 	neuraclinic-auth \
 	neuraclinic-file-management \
 	neuraclinic-location \
 	neuraclinic-notifications \
 	neuraclinic-records
+USERS_SUBMODULE_DIR = neuraclinic-users
 
 create-envs:
 	test -f .env || cp .env.example .env
@@ -36,11 +38,13 @@ compose-submodules-detached:
 	@for dir in $(SUBMODULE_COMPOSE_DIRS); do \
 		$(MAKE) -C $$dir compose-build-detached; \
 	done
+	cd $(USERS_SUBMODULE_DIR) && npm run compose:detached
 
 compose-submodules-down-remove-orphans:
 	@for dir in $(SUBMODULE_COMPOSE_DIRS); do \
 		docker compose -f $$dir/.docker/compose.yml down --remove-orphans; \
 	done
+	cd $(USERS_SUBMODULE_DIR) && npm run compose:down
 	docker compose -f $(DOCKER_COMPOSE_FILE) down --remove-orphans
 
 submodules:
