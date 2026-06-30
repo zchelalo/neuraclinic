@@ -7,7 +7,7 @@ grpc:
   url: "{{http}}://{{host}}:{{recordPort}}"
   method: /record.v1.AttachmentService/Create
   methodType: unary
-  protoFilePath: ../../../neuraclinic-proto-contracts/proto/record/v1/attachment.proto
+  protoFilePath: C:/Users/admin/Documents/neuraclinic-api-client-protos/record/v1/attachment.proto
   metadata:
     - name: accept-language
       value: "{{language}}"

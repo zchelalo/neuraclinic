@@ -25,3 +25,6 @@
 [submodule "neuraclinic-api-gateway"]
 	path = neuraclinic-api-gateway
 	url = git@github.com:zchelalo/neuraclinic-api-gateway.git
+[submodule "neuraclinic-web"]
+	path = neuraclinic-web
+	url = git@github.com:zchelalo/neuraclinic-web.git

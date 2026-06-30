@@ -7,7 +7,7 @@ grpc:
   url: "{{http}}://{{host}}:{{recordPort}}"
   method: /record.v1.AppointmentService/List
   methodType: unary
-  protoFilePath: ../../neuraclinic-api-client-protos/record/v1/appointment.proto
+  protoFilePath: ../neuraclinic-proto-contracts/proto/record/v1/appointment.proto
   metadata:
     - name: accept-language
       value: "{{language}}"
